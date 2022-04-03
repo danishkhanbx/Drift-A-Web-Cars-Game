@@ -1,0 +1,139 @@
+<html>
+	<head>
+		<title> Chat </title>
+		<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+		<style>
+			* {
+				font-family: sans-serif;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+			.header-area {
+				height: 50px;
+				background: rgb(0 127 255);
+				box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
+				color: white;
+				padding: 4px;
+				left:50%;
+			}
+			.message-area {
+				height: 80%;
+				padding: 3px;
+				overflow: auto;
+			}
+			.typing-area {
+				amargin-top: 0px;
+				padding: 0px;
+				height: 100%;
+				height:auto;
+				position:absolute;
+				bottom:0;
+				width:100%;
+			}
+			.typing-box {
+				width: 80%;
+				height: 50px;
+				position:relative;
+				padding: 0px;
+			}
+			.send-button {
+				border: 0;
+				width: 20%;
+				background: rgb(0 127 255);
+				color: white;
+				padding: 0px;
+				font-size: 18px;
+				position: absolute;
+				margin: 0px;
+				height:50px;
+			}
+			.message-box {
+				margin-top: 0px;
+			}
+			.others-message-box {
+			}
+			.my-message-box {
+				text-align: right;
+				background: white;
+			}
+			.message {
+				max-width: 70%;
+				border-radius: 5%;
+				padding: 5px;
+				box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
+			}
+			.my-message {
+				float: right;
+				background: rgb(0 127 255);
+				color: white;
+			}
+			.others-message {
+				float: left;
+				background: white;
+			}
+			.separator {
+				width: 100%;
+				height: 8px;
+				float: left;
+			}
+			body {
+				padding:0;height:100%;width:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header-area">
+			<h1> Chat </h1>
+		</div>		
+
+		<div class="message-area" id="message-area">
+			<!-- <div class="message-box others-message-box">
+				<div class="message others-message"> Hi, How are you? </div>
+				<div class="separator"></div>
+			</div>
+
+			<div class="message-box my-message-box">
+				<div class="message my-message"> I am good, how are you doing? </div>
+				<div class="separator"></div>
+			</div> -->
+		</div>
+		<div class="typing-area">
+			<textarea class="typing-box" id="typing-box"></textarea>
+			<button class="send-button" onclick="sendMessage()"> Send </button>
+		</div>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket;
+			
+			window.onload = function() {
+				//socket = io.connect('http://localhost:3000');
+				socket = io();
+
+				socket.on('message-from-others', function(message){
+
+					var html = '<div class="message-box others-message-box">' +
+								'<div class="message others-message"> ' + message + ' </div>' +
+								'<div class="separator"></div>' +
+							'</div>';
+
+					document.getElementById("message-area").innerHTML += html;
+				})
+			}
+
+			function sendMessage() {
+				var message = document.getElementById("typing-box").value;
+				var html = '<div class="message-box my-message-box">' +
+								'<div class="message my-message"> ' + message + ' </div>' +
+								'<div class="separator"></div>' +
+							'</div>';
+
+				document.getElementById("message-area").innerHTML += html;
+				document.getElementById("typing-box").value = "";
+
+				socket.emit("codeboard-message", message);
+			}
+		</script>
+	</body>
+</html>
