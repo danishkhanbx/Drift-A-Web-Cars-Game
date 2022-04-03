@@ -9,7 +9,7 @@ We have made the game easily accessible for players. Players only need to enter 
 https://user-images.githubusercontent.com/83022701/161425882-79f20e84-7f6b-4f2c-8807-d8b429668b16.mp4
 
 ## FAQ
-This is the public version of Drift: A Web Cars Game. It doesn't have any code in it, but it does have the car model designs and images we used in our game.
+This repository is the public version of Drift: A Web Cars Game. It doesn't have any code, but it does have the car model designs and images we used in our game.
 ## Support
 
 For support, mail us at driftthecar@gmail.com or message us on LinkedIn.
