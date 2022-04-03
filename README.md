@@ -1,3 +1,9 @@
-# Drift-A-Web-Cars-game
-https://user-images.githubusercontent.com/83022701/161423921-6b9866c2-83b7-4ba3-a758-ab2ccd60a313.mp4
+# Drift
 
+A fun, multiplayer, racing game that runs in your browser.
+
+# Install
+    git clone https://github.com/WaelShaikh/Drift.git
+    cd Drift/
+    npm install
+    npm start
